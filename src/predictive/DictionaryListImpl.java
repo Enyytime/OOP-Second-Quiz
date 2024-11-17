@@ -42,7 +42,7 @@ public class DictionaryListImpl {
     return PredictivePrototype.wordToSignature(word); // ehehehehhe
   }
 
-  public int STWRecursion(String signature, int left, int right) {
+  public int STWBinarySearch(String signature, int left, int right) {
     if (left <= right) {
       int mid = left + (right - left) / 2;
       String midSignature = dictionary.get(mid).getSignature();
@@ -54,23 +54,31 @@ public class DictionaryListImpl {
       }
 
       if (midSignature.compareTo(signature) > 0) {
-        return STWRecursion(signature, left, mid - 1);  // Recurse left
+        return STWBinarySearch(signature, left, mid - 1);  // Recurse left
       } else {
-        return STWRecursion(signature, mid + 1, right);  // Recurse right
+        return STWBinarySearch(signature, mid + 1, right);  // Recurse right
       }
     }
     return -1;  // Return -1 if the signature is not found
   }
+
+
   public List<String> signatureToWords(String signature){
     List<String> result = new ArrayList<>();
-    Set<String> seenWords = new HashSet<>();
+    Set<String> seenWords = new HashSet<>(); //seen words hashset to not add duplicate words
     int left = 0;
     int right = dictionary.size() - 1;
 
     int index = 0;
-    index = STWRecursion(signature, left, right);
+    index = STWBinarySearch(signature, left, right);
+
+    /*
+    after we're done with the binary search, we need to add the words on the dictionary, since there's a lot of
+    word that has the same signature we can loop though the bottom or up, to search words that has the same signature
+    */
     if(index != -1){
       int position = index;
+      // going to the left
       while(position >= 0 && dictionary.get(position).getSignature().equals(signature)){
         String word = dictionary.get(position).getWord();
 
@@ -83,6 +91,8 @@ public class DictionaryListImpl {
 
         position--;
       }
+
+      //going to the right
       position = index + 1;
       while(position < dictionary.size() && dictionary.get(position).getSignature().equals(signature)){
         String word = dictionary.get(position).getWord();
