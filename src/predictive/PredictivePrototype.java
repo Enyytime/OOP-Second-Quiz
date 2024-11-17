@@ -8,22 +8,22 @@ import java.util.Set;
 
 public class PredictivePrototype {
 
-//    public static String wordToSignature(String word) {
-//        StringBuilder signature = new StringBuilder();
-//        String[] keypad = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-//        for(char c : word.toLowerCase().toCharArray()) {
-//            for(int i = 0; i < keypad.length; i++) {
-//                if(keypad[i].contains(c + "")){
-//                    signature.append(i + 2);
-//                    break;
-//                }
-//            }
-//        }
-//        return signature.toString();
-//    }
+    //    public static String wordToSignature(String word) {
+    //        StringBuilder signature = new StringBuilder();
+    //        String[] keypad = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    //        for(char c : word.toLowerCase().toCharArray()) {
+    //            for(int i = 0; i < keypad.length; i++) {
+    //                if(keypad[i].contains(c + "")){
+    //                    signature.append(i + 2);
+    //                    break;
+    //                }
+    //            }
+    //        }
+    //        return signature.toString();
+    //    }
     // timewise, this fucntion is faster by a small margin than the top one ehehehehhehe
     public static String wordToSignature(String word){
-        StringBuffer signature = new StringBuffer();
+        StringBuilder signature = new StringBuilder();
         for(int i = 0; i < word.length(); i++){
             char c = word.charAt(i);
             c = toLowercase(c);
@@ -83,9 +83,9 @@ public class PredictivePrototype {
 
     private static boolean isValidWord(String word) {
         return word.matches("[a-zA-Z]+");
-    }
-    // i made this when i i didn't know there's a toLowercase function in the String datatype
-    public static char toLowercase(char c) {
+        }
+        // i made this when i i didn't know there's a toLowercase function in the String datatype
+        public static char toLowercase(char c) {
         if (c == 'A') {
             return 'a';
         } else if (c == 'B') {
@@ -139,7 +139,6 @@ public class PredictivePrototype {
         } else if (c == 'Z') {
             return 'z';
         }
-        // If it's not an uppercase letter, return the character as it is
         return c;
     }
 }
