@@ -1,6 +1,5 @@
 package predictive;
 
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,13 +12,12 @@ import java.util.Set;
 
 public class DictionaryListImpl {
   private ArrayList<WordSig> dictionary;
-
-
   public DictionaryListImpl(String filepath) throws IOException {
     dictionary = new ArrayList<>();
     readDictionary(filepath);
     Collections.sort(dictionary);
   }
+
 
   private void readDictionary(String filepath) throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(filepath));

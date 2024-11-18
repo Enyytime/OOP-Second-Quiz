@@ -83,9 +83,9 @@ public class PredictivePrototype {
 
     private static boolean isValidWord(String word) {
         return word.matches("[a-zA-Z]+");
-        }
+    }
         // i made this when i i didn't know there's a toLowercase function in the String datatype
-        public static char toLowercase(char c) {
+    public static char toLowercase(char c) {
         if (c == 'A') {
             return 'a';
         } else if (c == 'B') {
