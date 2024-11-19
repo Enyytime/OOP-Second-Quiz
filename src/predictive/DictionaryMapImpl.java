@@ -34,17 +34,21 @@ public class DictionaryMapImpl implements Dictionary {
   }
 
   @Override
+  //since we're using map, i think map is already a binary tree if im not mistaken
+
   public Set<String> signatureToWords(String signature){
-    Set<String> words = dictionaryMap.get(signature);
+    Set<String> words = dictionaryMap.get(signature); //so we get the the signature locations
     Set<String> result = new HashSet<>();
     if(words != null){
-      for(String word : words){
+
+      for(String word : words){ //then iterate thourgh all the list of words that has signature as it keys
         result.add(word);
       }
     }
     return result;
   }
   public static String wordToSignature(String word){
+
     return PredictivePrototype.wordToSignature(word); // ehehehehhe
   }
 }

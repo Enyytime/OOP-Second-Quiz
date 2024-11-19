@@ -48,30 +48,51 @@ public class DictionaryTreeImpl implements Dictionary{
 
 
 
-  public void signatureToWordsRecursiveHelper(String signature, int index, Set<String> result, Set<String> seenWords){
-    if(index == signature.length()){
-      for(String word : words){
-        if(word.length() == signature.length() && !seenWords.contains(word)){
-          result.add(word.toLowerCase());
-          seenWords.add(word);
+  public void signatureToWordsRecursiveHelper(String signature, int index, Set<String> result, Set<String> seenWords) {
+    if (index == signature.length()) {
+      // Iterate through all words and check for the signature match
+      for (String word : words) {
+        // Check for all possible substrings in the word
+        for (int start = 0; start < word.length(); start++) {
+          for (int end = start + 1; end <= word.length(); end++) {
+            String substring = word.substring(start, end);
+
+            // Ensure the substring contains only alphabetic characters
+            if (substring.matches("[a-zA-Z]+")) {
+              String substringSignature = wordToSignature(substring); // Get the signature of the substring
+
+              // If the substring's signature matches and it's not already seen, add it to the result
+              if (substringSignature.equals(signature) && !seenWords.contains(substring)) {
+                result.add(substring.toLowerCase());
+                seenWords.add(substring);
+              }
+            }
+          }
         }
       }
       return;
     }
+
+    // Process each digit in the signature recursively
     char digit = signature.charAt(index);
     int branchIndex = digit - '2';
-    if(branches[branchIndex] == null) return;
+    if (branches[branchIndex] == null) return;
 
+    // Continue the recursion down the tree
     branches[branchIndex].signatureToWordsRecursiveHelper(signature, index + 1, result, seenWords);
   }
+
   @Override
-  public Set<String> signatureToWords(String signature){
+  public Set<String> signatureToWords(String signature) {
     Set<String> seenWords = new HashSet<>();
     Set<String> result = new HashSet<>();
     signatureToWordsRecursiveHelper(signature, 0, result, seenWords);
     return result;
   }
 
+
+
+  //
   public String wordToSignature(String word) {
     StringBuilder signature = new StringBuilder();
     String[] keypad = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
@@ -85,4 +106,20 @@ public class DictionaryTreeImpl implements Dictionary{
     }
     return signature.toString();
   }
+
+  // Method to print the tree recursively
+  public void printTree(String prefix) {
+    // Print current level words
+    if (!words.isEmpty()) {
+      System.out.println(prefix + " -> " + words);
+    }
+
+    // Recursively print the children nodes (branches)
+    for (int i = 0; i < branches.length; i++) {
+      if (branches[i] != null) {
+        branches[i].printTree(prefix + " -> " + (char)('2' + i)); // Printing current branch number
+      }
+    }
+  }
+
 }

@@ -74,6 +74,7 @@ public class DictionaryListImpl {
     after we're done with the binary search, we need to add the words on the dictionary, since there's a lot of
     word that has the same signature we can loop though the bottom or up, to search words that has the same signature
     */
+
     if(index != -1){
       int position = index;
       // going to the left

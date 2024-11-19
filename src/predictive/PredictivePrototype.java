@@ -63,14 +63,14 @@ public class PredictivePrototype {
         Set<String> words = new HashSet<>();
 
         try{
-            File dictionary = new File("words");
-            Scanner scan = new Scanner(dictionary);
+            File dictionary = new File("words"); // scan the words file
+            Scanner scan = new Scanner(dictionary); // then put it inside a scanner, so the code can read the file
             while(scan.hasNextLine()){
                 String word = scan.nextLine().toLowerCase();
                 if(isValidWord(word)){
-                    String wordSignature = wordToSignature(word);
+                    String wordSignature = wordToSignature(word); // change the word into signature
 
-                    if(wordSignature.equals(signature)){
+                    if(wordSignature.equals(signature)){ //and if the word's signature is the same, we add to the results
                         words.add(word);
                     }
                 }
@@ -84,7 +84,7 @@ public class PredictivePrototype {
     private static boolean isValidWord(String word) {
         return word.matches("[a-zA-Z]+");
     }
-        // i made this when i i didn't know there's a toLowercase function in the String datatype
+    // i made this when i i didn't know there's a toLowercase function in the String datatype
     public static char toLowercase(char c) {
         if (c == 'A') {
             return 'a';
