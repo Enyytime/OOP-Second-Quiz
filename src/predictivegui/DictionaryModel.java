@@ -7,6 +7,10 @@ import predictive.Dictionary;
 import predictive.DictionaryTreeImpl;
 import java.util.Collections;
 
+/*
+* model is basically what did the hard work in this part, it'll update the word, update the word list, and append it into the view
+*
+* */
 
 public class DictionaryModel {
   private StringBuffer signatureBuilder = new StringBuffer("");
@@ -58,26 +62,26 @@ public class DictionaryModel {
 
   // Adjusted for mapping digits to characters and cycling through matches
   private void addChar(char chr) {
-    // Add the digit to the signature builder
+    //append the digits inputted to the signatureBuilder
     signatureBuilder.append(chr);
 
     // Initialize or reset the selected matches list
     selectedMatch.clear();
 
-    // Get the current prefix from the signature
+    //get the prefix
     String currentPrefix = signatureBuilder.toString();
 
-    // Call signatureToWords to get all possible words that have the signature as a substring
+    //call signatureToWords to get all possible words that have the signature as a substring
     Set<String> possibleWords = dictionary.signatureToWords(currentPrefix);
 
-    // Print the possible words for debugging
+    //Just for debugginng purposes
     System.out.println("Possible words for signature '" + currentPrefix + "': " + possibleWords);
 
     // If matches are found, update the signature builder and selected matches
     if (!possibleWords.isEmpty()) {
       selectedMatch.addAll(possibleWords);
 
-      // Sort the selected matches lexicographically
+      // since it'll change the the wordlist, we're gonna go to the highest in lexicographically order
       Collections.sort(selectedMatch);
 
       // Reset the signature builder length to the current prefix length
@@ -155,14 +159,12 @@ public class DictionaryModel {
     resetMark();
   }
 
-  // Cycle through the matches
   private void changeWord() {
     if (!selectedMatch.isEmpty()) {
       mark = (mark + 1) % selectedMatch.size();
     }
   }
 
-  // Returns the current response to be shown
   public String getResponse() {
     return resp.toString();
   }

@@ -1,9 +1,8 @@
 package predictivegui;
 
-/* this class serves as the controller in MVC. it will handle
-the process of user input from the view, communicate with the model
-to perform necessary actions or changes, and ensure that the model reflects
-the current state of the model.
+/* this is controller in MVC. controller is basically to connect the view and the model
+in short controller is the gateway, model is the backend view as the frontend, and it'll update the view
+based on the interaction from view gets updated from the model
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

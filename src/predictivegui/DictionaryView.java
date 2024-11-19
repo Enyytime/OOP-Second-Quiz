@@ -1,9 +1,5 @@
 package predictivegui;
 
-/*  this class is to display the user interface and handle user input events. 
-    this class contains methods for initializing the frame, adding action listeners to buttons,
-    and updating the text area based on the provided string. */
-
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
@@ -79,5 +75,4 @@ public class DictionaryView {
   public void setTextArea(String text) {
     MainPanel.text.setText(text);
   }
-
 }

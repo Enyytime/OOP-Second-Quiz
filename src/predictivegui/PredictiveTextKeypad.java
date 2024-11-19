@@ -1,8 +1,9 @@
 package predictivegui;
 
-/* now, we implement a simple application which follows the MVC design pattern.
- * this will represent the predictive text entry system.
- */
+/*
+* this part is too start the application by combining the Dictionary MVC
+*
+* */
 
 public class PredictiveTextKeypad {
 
